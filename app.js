@@ -68,7 +68,7 @@ app.post('/c/c-register', function(req, res, next) {
 
   // 登録するためのquery
   var body = {
-    "type": "volunteerinfo",
+    "type": "cordinatorinfo",
     "user_id" : _id,
     "user_name": userName,
     "email": email,
@@ -91,7 +91,7 @@ app.post('/c/c-register', function(req, res, next) {
   var query = {
     "selector": {
       "email": email,
-      "type": "volunteerinfo",
+      "type": "cordinatorinfo",
     },
     "fields": ["_id","email"]
   };
@@ -136,6 +136,7 @@ app.post("/c/c-login", function(req, res, next) {
 
   var query = {
     "selector": {
+      "type": "cordinatorinfo",
       "email": email,
       "password": cipheredText
     },
@@ -244,6 +245,7 @@ app.post("/f/f-login", function(req, res, next) {
 
   var query = {
     "selector": {
+      "type": "fieldworkerinfo",
       "email": email,
       "password": cipheredText
     },
@@ -259,11 +261,11 @@ app.post("/f/f-login", function(req, res, next) {
     if (userId){
       req.session.user_id = userId;
       req.session.user_name = result.docs[0].user_name;
-      res.render("c/c-dashboard", {
+      res.render("f/f-dashboard", {
         user_name: req.session.user_name
       });
     }else{
-      res.render('c/c-login', {
+      res.render('f/f-login', {
         title: 'ログイン',
         noUser: 'メールアドレスとパスワードが一致するユーザーはいません'
       });
@@ -388,6 +390,123 @@ app.get("/f/f-volunteers-list", function (req, res, next) {
 });
 
 //ボランティア
+
+app.get("/v/v-register", function (req, res, next) {
+  res.render("v/v-register", {
+    title:"新規会員登録"
+  });
+});
+
+app.post('/v/v-register', function(req, res, next) {
+  var _id = "v-" + moment().unix().toString(10);
+  var userName = req.body.user_name;
+  var email = req.body.email;
+  var password = req.body.password;
+  var createdAt = moment().format('YYYY-MM-DD HH:mm:ss');
+
+  // パスワードを暗号化
+  var cipher = crypto.createCipher('aes192', "passw0rd");
+  cipher.update(password, 'utf8', 'hex');
+  var cipheredText = cipher.final('hex');
+
+  // 登録するためのquery
+  var body = {
+    "type": "volunteerinfo",
+    "user_id" : _id,
+    "user_name": userName,
+    "email": email,
+    "password": cipheredText,
+    "age": req.body.age,
+    "live": req.body.live,
+    "telephone": req.body.telephone,
+    "occupation": req.body.occupation,
+    "skill": req.body.skill,
+    "goto": req.body.goto,
+    "arrivaldate": req.body.arrivaldate,
+    "Twitter": req.body.Twitter,
+    "insurance": req.body.insurance,
+    "pr": req.body.pr,
+    "car": req.body.car,
+    "created_at": createdAt,
+  };
+
+  // メールアドレスがあるかどうかを確認するためのquery
+  var query = {
+    "selector": {
+      "email": email,
+      "type": "volunteerinfo",
+    },
+    "fields": ["_id","email"]
+  };
+
+  user_db.find(query, function(err, result) {
+    if (err) {
+      throw err;
+    }
+    console.log('Found %d documents', result.docs.length);
+    console.log(result.docs);
+    if (result.docs[0]){
+      res.render('v/v-register', {
+          title: '新規会員登録',
+          emailExists: '既に登録されているメールアドレスです'
+      });
+    }else{
+      user_db.insert(body, _id, (err, data) => {
+        if (err) {
+            console.log(err);
+          } else {
+            console.log(data); // { ok: true, id: _id, ...
+          }
+          res.redirect("/v/v-login");
+      });
+    }
+  });
+});
+
+// ログイン画面
+app.get("/v/v-login", function (req, res, next) {
+  res.render("v/v-login", { title: "ログイン" });
+});
+
+app.post("/v/v-login", function(req, res, next) {
+  var email = req.body.email;
+  var password = req.body.password;
+
+  // パスワードを暗号化
+  var cipher = crypto.createCipher('aes192', "passw0rd");
+  cipher.update(password, 'utf8', 'hex');
+  var cipheredText = cipher.final('hex');
+
+  var query = {
+    "selector": {
+      "type": "volunteerinfo",
+      "email": email,
+      "password": cipheredText
+    },
+    "fields": ["_id","email", "password", "user_name"]
+  };
+
+  user_db.find(query, function(err, result) {
+    if (err) {
+      throw err;
+    }
+    var userId = result.docs.length? result.docs[0]._id: false;
+
+    if (userId){
+      req.session.user_id = userId;
+      req.session.user_name = result.docs[0].user_name;
+      res.render("v/v-dashboard", {
+        user_name: req.session.user_name
+      });
+    }else{
+      res.render('v/v-login', {
+        title: 'ログイン',
+        noUser: 'メールアドレスとパスワードが一致するユーザーはいません'
+      });
+    }
+  });
+});
+
 app.get("/v/v-ans", function (req, res, next) {
   const message = "This message is from express.";
   res.render("v/v-ans", { message: message });
