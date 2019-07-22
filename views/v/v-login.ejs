@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= title%></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/css/uikit.min.css" />
+<link rel="stylesheet" href="/css/common.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/js/uikit-icons.min.js"></script>
+    <script src="/js/show-menu.js"></script>
+</head>
+
+<body>
+
+    <!-- menu icon -->
+    <script>show_i18n();</script>
+
+    <div class="uk-padding">
+        <!-- title -->
+        <div class="uk-section-xsmall uk-section-primary">
+            <div class="uk-text-center uk-flex-middle">
+                <div class="uk-text-large">認証(現場担当者)</div>
+            </div>
+        </div>
+        <form action="/v/v-login" method="post" class="board-form">
+            <span class="label">Eメール</span><input type="email" name="email" class="input" required><br>
+            <br>
+            <span class="label">パスワード</span><input type="password" name="password" class="input" required><br>
+            <br>
+            <button type="submit" class="submit">ログイン</button>
+        </form>
+
+        <% if (typeof noUser !== 'undefined') { %>
+            <p class="error"><%= noUser %></p>
+        <% } %>
+        <!-- Back -->
+        <div class="uk-section-xsmall uk-section-muted uk-text-center">
+            <button onclick="location.href='./c-dashboard'"
+                class="uk-text-center uk-button uk-button-primary uk-width-auto"><span
+                    uk-icon="icon: arrow-right; ratio:1"></span>&ensp; ログイン後の画面へ</button>
+        </div>
+    </div>
+
+</html>

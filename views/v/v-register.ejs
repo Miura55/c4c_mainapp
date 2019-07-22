@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= title %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/css/uikit.min.css" />
+<link rel="stylesheet" href="/css/common.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/js/uikit-icons.min.js"></script>
+      <script src="/js/show-menu.js"></script>
+</head>
+
+<body>
+
+    <!-- menu icon -->
+    <script>show_i18n();</script>
+
+    <div class="uk-padding">
+        <!-- title -->
+        <div class="uk-section-xsmall uk-section-primary">
+            <div class="uk-text-center uk-flex-middle">
+                <div class="uk-text-large">新規登録</div>
+            </div>
+        </div>
+        <div class="uk-text-center">
+          <form action="/v/v-register" method="post" class="board-form">
+              <span class="label">ユーザー名</span><input type="text" name="user_name" class="input" required><br>
+              <br>
+              <span class="label">Eメール</span><input type="email" name="email" class="input" required><br>
+              <br>
+              <span class="label">パスワード</span><input type="password" name="password" class="input" required><br>
+              <br>
+              <span class="label">年齢</span><input type="number" name="age" class="age" class="input" required><br>
+              <br>
+              <span class="label">居住地</span><input type="text" name="live" class="input" required><br>
+              <br>
+              <span class="label">電話番号</span><input type="tel" name="telephone" class="input" required><br>
+              <br>
+              <span class="label">職業</span><input type="text" name="occupation" class="input" required><br>
+              <br>
+              <span class="label">特技</span><input type="text" name="skill" class="input" required><br>
+              <br>
+              <span class="label">向かう方面</span><input type="text" name="goto" class="input" required><br>
+              <br>
+              <span class="label">到着予定時刻</span><input type="datetime-local" name="arrivaldate" class="input" required><br>
+              <br>
+              <span class="label">Twitter ID（お持ちの方）</span><input type="text" name="Twitter" class="input" required><br>
+              <br>
+              <span class="label">ボランティア保険加入状況</span>
+              <td>
+                <input type="radio" name="insurance" value="true">加入
+                <input type="radio" name="insurance" value="false">未加入
+              </td><br>
+              <br>
+              <span class="label">PR</span><textarea class="input" name="pr" placeholder="意気込みをどうぞ！"></textarea>
+              <br>
+              <span class="label">車種</span><input type="textarea" name="car" class="input">
+              <br>
+              <button type="submit" class="submit">登録</button>
+          </form>
+          <% if (typeof emailExists !== 'undefined') { %>
+              <p class="error"><%= emailExists %></p>
+          <% } %>
+        </div>
+        <!-- Back -->
+        <div class="uk-section-xsmall uk-section-muted uk-text-center">
+            <button onclick="location.href='./v-dashboard'"
+                class="uk-text-center uk-button uk-button-primary uk-width-auto"><span
+                    uk-icon="icon: arrow-right; ratio:1"></span>&ensp; ログイン後の画面へ</button>
+        </div>
+    </div>
+
+</html>
