@@ -19,6 +19,7 @@ var v_login = require('./routes/volunteer/v-login');
 
 var app = express();
 app.engine('ejs', engine);
+app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -42,7 +43,6 @@ app.use('/v/v-login', v_login);
 var server = app.listen(3000, function () {
   console.log("Node.js is listening to PORT:" + server.address().port);
 });
-app.set('view engine', 'ejs');
 
 //debug
 app.get("/debug", function (req, res, next) {
@@ -221,4 +221,20 @@ app.get("/v/v-task-detail", function (req, res, next) {
 app.get("/v/v-top", function (req, res, next) {
   const message = "This message is from express.";
   res.render("v/v-top", { message: message });
+});
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  next(createError(404));
+});
+
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
 });
