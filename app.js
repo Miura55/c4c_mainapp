@@ -9,27 +9,40 @@ var session = require('express-session');
 var user_db = require('./cloudantConnect');
 var crypto = require("crypto");
 
-// セッションの定義
-var setUser = require('./setUser');
+//ルーターの定義
+var c_register = require('./routes/cordinator/c-register');
+var c_login = require('./routes/cordinator/c-login');
+var f_register = require('./routes/fieldworker/f-register');
+var f_login = require('./routes/fieldworker/f-login');
+var v_register = require('./routes/volunteer/v-register');
+var v_login = require('./routes/volunteer/v-login');
 
 var app = express();
 app.engine('ejs', engine);
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+// セッションの定義
+var setUser = require('./setUser');
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true
 }));
 
+// ルーティングの設定
+app.use('/c/c-register', c_register);
+app.use('/c/c-login', c_login);
+app.use('/f/f-register', f_register);
+app.use('/f/f-login', f_login);
+app.use('/v/v-register', v_register);
+app.use('/v/v-login', v_login);
+
 var server = app.listen(3000, function () {
   console.log("Node.js is listening to PORT:" + server.address().port);
 });
 app.set('view engine', 'ejs');
-
-
-//ルーティング
 
 //debug
 app.get("/debug", function (req, res, next) {
@@ -46,116 +59,6 @@ app.get("/c/c-ask-from-f", function (req, res, next) {
 app.get("/c/c-assign-v", function (req, res, next) {
   const message = "This message is from express.";
   res.render("c/c-assign-v", { message: message });
-});
-
-app.get("/c/c-register", function (req, res, next) {
-  res.render("c/c-register", {
-    title:"新規会員登録"
-  });
-});
-
-app.post('/c/c-register', function(req, res, next) {
-  var _id = "c-" + moment().unix().toString(10);
-  var userName = req.body.user_name;
-  var email = req.body.email;
-  var password = req.body.password;
-  var createdAt = moment().format('YYYY-MM-DD HH:mm:ss');
-
-  // パスワードを暗号化
-  var cipher = crypto.createCipher('aes192', "passw0rd");
-  cipher.update(password, 'utf8', 'hex');
-  var cipheredText = cipher.final('hex');
-
-  // 登録するためのquery
-  var body = {
-    "type": "cordinatorinfo",
-    "user_id" : _id,
-    "user_name": userName,
-    "email": email,
-    "password": cipheredText,
-    "age": req.body.age,
-    "live": req.body.live,
-    "telephone": req.body.telephone,
-    "belongs": req.body.belongs,
-    "skill": req.body.skill,
-    "created_at": createdAt,
-  };
-
-  // メールアドレスがあるかどうかを確認するためのquery
-  var query = {
-    "selector": {
-      "email": email,
-      "type": "cordinatorinfo",
-    },
-    "fields": ["_id","email"]
-  };
-
-  user_db.find(query, function(err, result) {
-    if (err) {
-      throw err;
-    }
-    console.log('Found %d documents', result.docs.length);
-    console.log(result.docs);
-    if (result.docs[0]){
-      res.render('c/c-register', {
-          title: '新規会員登録',
-          emailExists: '既に登録されているメールアドレスです'
-      });
-    }else{
-      user_db.insert(body, _id, (err, data) => {
-        if (err) {
-            console.log(err);
-          } else {
-            console.log(data); // { ok: true, id: _id, ...
-          }
-          res.redirect("/c/c-login");
-      });
-    }
-  });
-});
-
-// ログイン画面
-app.get("/c/c-login", function (req, res, next) {
-  res.render("c/c-login", { title: "ログイン" });
-});
-
-app.post("/c/c-login", function(req, res, next) {
-  var email = req.body.email;
-  var password = req.body.password;
-
-  // パスワードを暗号化
-  var cipher = crypto.createCipher('aes192', "passw0rd");
-  cipher.update(password, 'utf8', 'hex');
-  var cipheredText = cipher.final('hex');
-
-  var query = {
-    "selector": {
-      "type": "cordinatorinfo",
-      "email": email,
-      "password": cipheredText
-    },
-    "fields": ["_id","email", "password", "user_name"]
-  };
-
-  user_db.find(query, function(err, result) {
-    if (err) {
-      throw err;
-    }
-    var userId = result.docs.length? result.docs[0]._id: false;
-
-    if (userId){
-      req.session.user_id = userId;
-      req.session.user_name = result.docs[0].user_name;
-      res.render("c/c-dashboard", {
-        user_name: req.session.user_name
-      });
-    }else{
-      res.render('c/c-login', {
-        title: 'ログイン',
-        noUser: 'メールアドレスとパスワードが一致するユーザーはいません'
-      });
-    }
-  });
 });
 
 app.get("/c/c-completed-task-list", function (req, res, next) {
@@ -223,115 +126,6 @@ app.get("/c/c-top", function (req, res, next) {
 });
 
 //現場担当者
-// ログイン画面
-app.get("/f/f-login", function (req, res, next) {
-  res.render("f/f-login", { title: "ログイン" });
-});
-
-app.post("/f/f-login", function(req, res, next) {
-  var email = req.body.email;
-  var password = req.body.password;
-
-  // パスワードを暗号化
-  var cipher = crypto.createCipher('aes192', "passw0rd");
-  cipher.update(password, 'utf8', 'hex');
-  var cipheredText = cipher.final('hex');
-
-  var query = {
-    "selector": {
-      "type": "fieldworkerinfo",
-      "email": email,
-      "password": cipheredText
-    },
-    "fields": ["_id","email", "password", "user_name"]
-  };
-
-  user_db.find(query, function(err, result) {
-    if (err) {
-      throw err;
-    }
-    var userId = result.docs.length? result.docs[0]._id: false;
-
-    if (userId){
-      req.session.user_id = userId;
-      req.session.user_name = result.docs[0].user_name;
-      res.render("f/f-dashboard", {
-        user_name: req.session.user_name
-      });
-    }else{
-      res.render('f/f-login', {
-        title: 'ログイン',
-        noUser: 'メールアドレスとパスワードが一致するユーザーはいません'
-      });
-    }
-  });
-});
-
-app.get("/f/f-register", function (req, res, next) {
-  res.render("f/f-register", {
-    title:"新規会員登録"
-  });
-});
-
-app.post('/f/f-register', function(req, res, next) {
-  var _id = "f-" + moment().unix().toString(10);
-  var userName = req.body.user_name;
-  var email = req.body.email;
-  var password = req.body.password;
-  var createdAt = moment().format('YYYY-MM-DD HH:mm:ss');
-
-  // パスワードを暗号化
-  var cipher = crypto.createCipher('aes192', "passw0rd");
-  cipher.update(password, 'utf8', 'hex');
-  var cipheredText = cipher.final('hex');
-
-  // 登録するためのquery
-  var body = {
-    "type": "fieldworkerinfo",
-    "user_id" : _id,
-    "user_name": userName,
-    "email": email,
-    "password": cipheredText,
-    "age": req.body.age,
-    "live": req.body.address,
-    "telephone": req.body.telephone,
-    "agreements": [req.body.agreement1, req.body.agreement2, req.body.agreement3],
-    "created_at": createdAt,
-  };
-
-  // メールアドレスがあるかどうかを確認するためのquery
-  var query = {
-    "selector": {
-      "email": email,
-      "type": "fieldworkerinfo",
-    },
-    "fields": ["_id","email"]
-  };
-
-  user_db.find(query, function(err, result) {
-    if (err) {
-      throw err;
-    }
-    console.log('Found %d documents', result.docs.length);
-    console.log(result.docs);
-    if (result.docs[0]){
-      res.render('f/f-register', {
-          title: '新規会員登録',
-          emailExists: '既に登録されているメールアドレスです'
-      });
-    }else{
-      user_db.insert(body, _id, (err, data) => {
-        if (err) {
-            console.log(err);
-          } else {
-            console.log(data); // { ok: true, id: _id, ...
-          }
-          res.redirect("/f/f-login");
-      });
-    }
-  });
-});
-
 
 app.get("/f/f-dashboard", function (req, res, next) {
   const message = "This message is from express.";
@@ -384,123 +178,6 @@ app.get("/f/f-volunteers-list", function (req, res, next) {
 });
 
 //ボランティア
-
-app.get("/v/v-register", function (req, res, next) {
-  res.render("v/v-register", {
-    title:"新規会員登録"
-  });
-});
-
-app.post('/v/v-register', function(req, res, next) {
-  var _id = "v-" + moment().unix().toString(10);
-  var userName = req.body.user_name;
-  var email = req.body.email;
-  var password = req.body.password;
-  var createdAt = moment().format('YYYY-MM-DD HH:mm:ss');
-
-  // パスワードを暗号化
-  var cipher = crypto.createCipher('aes192', "passw0rd");
-  cipher.update(password, 'utf8', 'hex');
-  var cipheredText = cipher.final('hex');
-
-  // 登録するためのquery
-  var body = {
-    "type": "volunteerinfo",
-    "user_id" : _id,
-    "user_name": userName,
-    "email": email,
-    "password": cipheredText,
-    "age": req.body.age,
-    "live": req.body.live,
-    "telephone": req.body.telephone,
-    "occupation": req.body.occupation,
-    "skill": req.body.skill,
-    "goto": req.body.goto,
-    "arrivaldate": req.body.arrivaldate,
-    "Twitter": req.body.Twitter,
-    "insurance": req.body.insurance,
-    "pr": req.body.pr,
-    "car": req.body.car,
-    "created_at": createdAt,
-  };
-
-  // メールアドレスがあるかどうかを確認するためのquery
-  var query = {
-    "selector": {
-      "email": email,
-      "type": "volunteerinfo",
-    },
-    "fields": ["_id","email"]
-  };
-
-  user_db.find(query, function(err, result) {
-    if (err) {
-      throw err;
-    }
-    console.log('Found %d documents', result.docs.length);
-    console.log(result.docs);
-    if (result.docs[0]){
-      res.render('v/v-register', {
-          title: '新規会員登録',
-          emailExists: '既に登録されているメールアドレスです'
-      });
-    }else{
-      user_db.insert(body, _id, (err, data) => {
-        if (err) {
-            console.log(err);
-          } else {
-            console.log(data); // { ok: true, id: _id, ...
-          }
-          res.redirect("/v/v-login");
-      });
-    }
-  });
-});
-
-// ログイン画面
-app.get("/v/v-login", function (req, res, next) {
-  res.render("v/v-login", { title: "ログイン" });
-});
-
-app.post("/v/v-login", function(req, res, next) {
-  var email = req.body.email;
-  var password = req.body.password;
-
-  // パスワードを暗号化
-  var cipher = crypto.createCipher('aes192', "passw0rd");
-  cipher.update(password, 'utf8', 'hex');
-  var cipheredText = cipher.final('hex');
-
-  var query = {
-    "selector": {
-      "type": "volunteerinfo",
-      "email": email,
-      "password": cipheredText
-    },
-    "fields": ["_id","email", "password", "user_name"]
-  };
-
-  user_db.find(query, function(err, result) {
-    if (err) {
-      throw err;
-    }
-    var userId = result.docs.length? result.docs[0]._id: false;
-
-    if (userId){
-      req.session.user_id = userId;
-      req.session.user_name = result.docs[0].user_name;
-      res.render("v/v-dashboard", {
-        user_name: req.session.user_name
-      });
-    }else{
-      res.render('v/v-login', {
-        title: 'ログイン',
-        noUser: 'メールアドレスとパスワードが一致するユーザーはいません'
-      });
-    }
-  });
-});
-
 app.get("/v/v-ans", function (req, res, next) {
   const message = "This message is from express.";
   res.render("v/v-ans", { message: message });
@@ -545,7 +222,3 @@ app.get("/v/v-top", function (req, res, next) {
   const message = "This message is from express.";
   res.render("v/v-top", { message: message });
 });
-
-
-
-//functions
