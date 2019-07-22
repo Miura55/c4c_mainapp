@@ -76,14 +76,8 @@ app.post('/c/c-register', function(req, res, next) {
     "age": req.body.age,
     "live": req.body.live,
     "telephone": req.body.telephone,
-    "occupation": req.body.occupation,
+    "belongs": req.body.belongs,
     "skill": req.body.skill,
-    "goto": req.body.goto,
-    "arrivaldate": req.body.arrivaldate,
-    "Twitter": req.body.Twitter,
-    "insurance": req.body.insurance,
-    "pr": req.body.pr,
-    "car": req.body.car,
     "created_at": createdAt,
   };
 
