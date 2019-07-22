@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>c-assign-v</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/css/uikit.min.css" />
+          <link rel="stylesheet" href="/css/common.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/js/uikit-icons.min.js"></script>
+    <script src="/js/show-menu.js"></script>
+</head>
+
+<body>
+  <!-- menu icon -->
+    <script>show_i18n();</script>
+
+
+    <!--complete modal-->
+    <div id="modal-assin-v" uk-modal>
+        <div class="uk-modal-dialog uk-modal-body">
+            <h2 class="uk-modal-title">このボランティアをアサインしますか？</h2>
+            <p>ボランティアと話は済んでいますか？双方の合意のもとアサインしてください。</p>
+            <p class="uk-text-right">
+                <button class="uk-button uk-button-default uk-modal-close" type="button">キャンセル</button>
+                <button class="uk-button uk-button-primary" type="button">アサインする（このボタン押したら準備者リストに登録されるとともに、自動でボランティアさんに定型文が飛ぶように。それを勝手にtext to speechとかで読み上げてくれるとベスト</button>
+            </p>
+        </div>
+    </div>
+
+
+
+    <div class="uk-padding">
+
+
+
+        <!-- title -->
+        <div class="uk-section-xsmall uk-section-primary">
+            <div class="uk-text-center uk-flex-middle ">
+                <div class="uk-text-large">岡崎 太郎 様</div>
+            </div>
+        </div>
+
+ <!-- status -->
+ <div class="uk-section-xsmall uk-section-default">
+        <div class="uk-flex uk-flex-center">
+            <div class="background-circle status-coming"><span uk-icon="icon:forward; ratio:2"></span></div>
+        </div>
+        <div class="uk-text-center uk-padding-small">
+                <div class="uk-text-meta">移動中</div>
+        </div>
+    </div>
+
+    <!-- assin this task to volunteers-->
+    <div class="uk-section-xsmall uk-section-muted uk-text-center">
+        <button class="uk-text-center uk-button uk-button-primary uk-width-auto" uk-toggle="target: #modal-assin-v">
+            <span uk-icon="icon:file-edit; ratio:1"></span>&ensp;このボランティアをアサインする<Br></button>
+    </div>
+
+        <hr class="uk-divider-icon">
+
+                <!-- profile -->
+                <div class="uk-section-xsmall uk-section-default">
+                        <div class="uk-margin-small uk-text-center"> 登録情報</div>
+                        <ul class="uk-list uk-list-striped">
+                            <li>
+                                <div class="uk-grid-divider  uk-grid-small uk-flex-middle" uk-grid>
+                                    <div class="uk-width-auto">
+                                        <div class="uk-text-break">
+                                            氏名
+                                        </div>
+                                    </div>
+
+                                    <div class="uk-width-expand">
+                                        <div class="uk-text-break">
+                                                {{payload.name}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="uk-grid-divider  uk-grid-small uk-flex-middle" uk-grid>
+                                    <div class="uk-width-auto">
+                                        <div class="uk-text-break">
+                                            年齢
+                                        </div>
+                                    </div>
+
+                                    <div class="uk-width-expand">
+                                        <div class="uk-text-break">
+                                                {{payload.age}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="uk-grid-divider  uk-grid-small uk-flex-middle" uk-grid>
+                                    <div class="uk-width-auto">
+                                        <div class="uk-text-break">
+                                            居住地
+                                        </div>
+                                    </div>
+
+                                    <div class="uk-width-expand">
+                                        <div class="uk-text-break">
+                                                {{payload.live}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="uk-grid-divider  uk-grid-small uk-flex-middle" uk-grid>
+                                    <div class="uk-width-auto">
+                                        <div class="uk-text-break">
+                                            電話番号
+                                        </div>
+                                    </div>
+
+                                    <div class="uk-width-expand">
+                                        <div class="uk-text-break">
+                                                090-1234-5678
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="uk-grid-divider  uk-grid-small uk-flex-middle" uk-grid>
+                                    <div class="uk-width-auto">
+                                        <div class="uk-text-break">
+                                            メールアドレス
+                                        </div>
+                                    </div>
+
+                                    <div class="uk-width-expand">
+                                        <div class="uk-text-break">
+                                                hoge@fuga.com
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+
+
+
+                            <li>
+                                <div class="uk-grid-divider  uk-grid-small uk-flex-middle" uk-grid>
+                                    <div class="uk-width-auto">
+                                        <div class="uk-text-break">
+                                            スキル
+                                        </div>
+                                    </div>
+
+                                    <div class="uk-width-expand">
+                                        <div class="uk-flex uk-flex uk-flex-left">
+                                            <div class="skills uk-text-break">飲食関係</div>
+                                            <div class="skills uk-text-break">流通</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                    <div class="uk-grid-divider  uk-grid-small uk-flex-middle" uk-grid>
+                                        <div class="uk-width-auto">
+                                            <div class="uk-text-break">
+                                                方面
+                                            </div>
+                                        </div>
+
+                                        <div class="uk-width-expand">
+                                            <div class="uk-flex uk-flex uk-flex-left">
+                                                <div class="uk-text-break">愛知県西部</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            <li>
+                                <div class="uk-grid-divider  uk-grid-small uk-flex-middle" uk-grid>
+                                    <div class="uk-width-auto">
+                                        <div class="uk-text-break">
+                                            到着予定日時
+                                        </div>
+                                    </div>
+
+                                    <div class="uk-width-expand">
+                                        <div class="uk-flex uk-flex uk-flex-left">
+                                            <div class="uk-text-break">09-12-2019&ensp;12:00</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                    <div class="uk-grid-divider  uk-grid-small uk-flex-middle" uk-grid>
+                                        <div class="uk-width-auto">
+                                            <div class="uk-text-break">
+                                                twitterアカウント
+                                            </div>
+                                        </div>
+
+                                        <div class="uk-width-expand">
+                                            <div class="uk-flex uk-flex uk-flex-left">
+                                                <div class="uk-text-break">hogefuga</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                        <div class="uk-grid-divider  uk-grid-small uk-flex-middle" uk-grid>
+                                            <div class="uk-width-auto">
+                                                <div class="uk-text-break">
+                                                    ボランティア保険
+                                                </div>
+                                            </div>
+
+                                            <div class="uk-width-expand">
+                                                <div class="uk-flex uk-flex uk-flex-left">
+                                                    <div class="uk-text-break">加入済み</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                            <div class="uk-grid-divider  uk-grid-small uk-flex-middle" uk-grid>
+                                                <div class="uk-width-auto">
+                                                    <div class="uk-text-break">
+                                                        自由記述（PRなど）
+                                                    </div>
+                                                </div>
+
+                                                <div class="uk-width-expand">
+                                                    <div class="uk-flex uk-flex uk-flex-left">
+                                                        <div class="uk-text-break">１０年間、近所の老人の傾聴活動に従事してきました。被災地でも心に寄り添う活動ができればと思っています。</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                                <div class="uk-grid-divider  uk-grid-small uk-flex-middle" uk-grid>
+                                                    <div class="uk-width-auto">
+                                                        <div class="uk-text-break">
+                                                           　車種等
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="uk-width-expand">
+                                                        <div class="uk-flex uk-flex uk-flex-left">
+                                                            <div class="uk-text-break">アルファード：白：札幌12-34</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                        </ul>
+                    </div>
+
+        <hr class="uk-divider-icon">
+
+        <div class="uk-margin-small uk-text-center">担当中案件</div>
+        <div class="uk-section-xsmall uk-section-muted">
+            <div class="uk-grid-small uk-child-width-1-1@s uk-child-width-1-3@m uk-flex-middle uk-text-center uk-grid-match"
+                uk-grid>
+
+                <!-- info card-->
+                <div>
+                    <div class="uk-card-small uk-card-default uk-card-body status-working div-a card-with-badge">
+                        <div class="uk-flex">
+                            <div class="badge-of-card">
+                                岡崎避難所
+                            </div>
+                        </div>
+                        <div class="uk-grid-divider  uk-grid-small uk-flex-middle" 　 uk-grid>
+                            <div class="uk-width-auto">
+                                <div class="uk-text-break">
+                                    <span uk-icon="icon:play; ratio:1.3"></span>
+                                </div>
+                            </div>
+
+                            <div class="uk-width-expand">
+
+                                <div class="uk-text-break">
+                                    水漏れが止まらない。汚水が運動場に流れ出てるので何とかして。
+                                </div>
+                            </div>
+                        </div>
+                        <a href="./f-taskdetail.html?taskid=100"></a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="uk-flex uk-flex-right uk-margin"><a class="uk-link-muted"
+                    href="c-completed-task-list.html">完了済一覧を見る</a></div>
+
+        </div>
+
+        <hr class="uk-divider-icon">
+
+
+        <!-- Back -->
+            <div class="uk-flex uk-flex-middle uk-flex-center">
+                <p class="uk-margin">
+                    <button onclick="history.back()"
+                        class="uk-text-center uk-button-large uk-button-primary uk-width-auto">
+                        <span uk-icon="icon: arrow-left; ratio:1"></span>&ensp; 戻る
+                    </button>
+                </p>
+            </div>
+
+    </div>
+
+</html>

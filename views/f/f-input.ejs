@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>f-input</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/css/uikit.min.css" />
+<link rel="stylesheet" href="/css/common.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/js/uikit-icons.min.js"></script>
+    <script src="/js/show-menu.js"></script>
+</head>
+
+<body>
+
+    <!-- menu icon -->
+    <script>show_i18n();</script>
+
+    <div class="uk-padding">
+
+
+
+        <!-- title -->
+        <div class="uk-section-xsmall uk-section-primary">
+            <div class="uk-text-center uk-flex-middle ">
+                <div class="uk-text-large">課題を入力</div>
+            </div>
+        </div>
+
+
+
+        <div class="uk-section-xsmall uk-section-muted">
+            <div class="uk-padding uk-padding-remove-bottom">
+                <form>
+                    <fieldset class="uk-fieldset">
+                        <div class="uk-margin">
+                            <div class="uk-grid-small uk-flex uk-flex-middle" uk-grind>
+                                <div class="uk-width-expand">
+                                    <textarea class="uk-textarea" rows="5"
+                                        placeholder="あなた一人で困りごとを抱える必要はありません。何に困っていますか？"></textarea>
+                                </div>
+                                <div class="uk-width-auto">
+                                    <a href="" class="uk-icon-link" uk-icon="icon:camera; ratio: 3"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-margin uk-text-center">
+                            <button onclick="" class="uk-button uk-button-default">知らせる</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back -->
+    <div class="uk-section-xsmall uk-section-muted uk-text-center">
+        <button onclick="history.back()" class="uk-text-center uk-button uk-button-primary uk-width-auto"><span
+                uk-icon="icon: arrow-left; ratio:1"></span>&ensp; 戻る</button>
+    </div>
+
+</html>

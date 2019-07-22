@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>f-edit-prof</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/css/uikit.min.css" />
+<link rel="stylesheet" href="/css/common.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/js/uikit.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/js/uikit-icons.min.js"></script>
+    <script src="/js/show-menu.js"></script>
+</head>
+
+<body>
+
+  <!-- menu icon -->
+    <script>show_i18n();</script>
+
+  <div class="uk-padding">
+
+    <!-- title -->
+    <div class="uk-section-xsmall uk-section-primary">
+      <div class="uk-text-center uk-flex-middle ">
+        <div class="uk-text-large">登録情報変更</div>
+      </div>
+    </div>
+
+
+    <!-- profile -->
+    <div class="uk-section-xsmall uk-section-default">
+      <form>
+        <fieldset class="uk-fieldset">
+          <ul class="uk-list uk-list-striped">
+            <li>
+              <div class="uk-grid-divider  uk-grid-small uk-flex-middle" uk-grid>
+                <div class="uk-width-auto">
+                  <div class="uk-text-break">
+                    名称
+                  </div>
+                </div>
+
+                <div class="uk-width-expand">
+                  <div class="uk-text-break">
+                    <input class="uk-input uk-form-blank" type="text" placeholder="{{payload.name}}">
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="uk-grid-divider  uk-grid-small uk-flex-middle" uk-grid>
+                <div class="uk-width-auto">
+                  <div class="uk-text-break">
+                    所在県
+                  </div>
+                </div>
+
+                <div class="uk-width-expand">
+                  <div class="uk-text-break">
+                    <input class="uk-input uk-form-blank" type="text" placeholder="{{payload.pref}}">
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="uk-grid-divider  uk-grid-small uk-flex-middle" uk-grid>
+                <div class="uk-width-auto">
+                  <div class="uk-text-break">
+                    所在市
+                  </div>
+                </div>
+                <div class="uk-width-expand">
+                  <div class="uk-text-break">
+                    <input class="uk-input uk-form-blank" type="text" placeholder="{{payload.city}}">
+                  </div>
+                </div>
+              </div>
+            </li>
+
+
+            <li>
+              <div class="uk-grid-divider  uk-grid-small uk-flex-middle" uk-grid>
+                <div class="uk-width-auto">
+                  <div class="uk-text-break">
+                    電話番号
+                  </div>
+                </div>
+                <div class="uk-width-expand">
+                  <div class="uk-text-break">
+                    <input class="uk-input uk-form-blank" type="text" placeholder="{{payload.phone-number}}">
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="uk-grid-divider  uk-grid-small uk-flex-middle" uk-grid>
+                <div class="uk-width-auto">
+                  <div class="uk-text-break">
+                    住所
+                  </div>
+                </div>
+                <div class="uk-width-expand">
+                  <div class="uk-text-break">
+                    <input class="uk-input uk-form-blank" type="text" placeholder="{{payload.address}}">
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="uk-grid-divider  uk-grid-small uk-flex-middle" uk-grid>
+                <div class="uk-width-auto">
+                  <div class="uk-text-break">
+                    事前協定先１
+                  </div>
+                </div>
+                <div class="uk-width-expand">
+                  <div class="uk-text-break">
+                    <input class="uk-input uk-form-blank" type="text" placeholder="{{payload.address}}">
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="uk-grid-divider  uk-grid-small uk-flex-middle" uk-grid>
+                <div class="uk-width-auto">
+                  <div class="uk-text-break">
+                    事前協定先２
+                  </div>
+                </div>
+                <div class="uk-width-expand">
+                  <div class="uk-text-break">
+                    <input class="uk-input uk-form-blank" type="text" placeholder="{{payload.address}}">
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="uk-grid-divider  uk-grid-small uk-flex-middle" uk-grid>
+                <div class="uk-width-auto">
+                  <div class="uk-text-break">
+                    事前協定先３
+                  </div>
+                </div>
+                <div class="uk-width-expand">
+                  <div class="uk-text-break">
+                    <input class="uk-input uk-form-blank" type="text" placeholder="{{payload.address}}">
+                  </div>
+                </div>
+              </div>
+            </li>
+
+          </ul>
+        </fieldset>
+      </form>
+    </div>
+
+    <hr class="uk-divider-icon">
+
+    <!-- Edit -->
+    <div class="uk-section-xsmall uk-section-muted uk-text-center">
+      <div class="uk-flex uk-flex-middle uk-flex-center">
+        <p class="uk-margin">
+          <button onclick="history.back()" class="uk-text-center uk-button-large uk-button-primary uk-width-auto"><span uk-icon="icon: arrow-left; ratio:1"></span>&ensp; キャンセル
+          </button>
+          <button onclick=" " class="uk-text-center uk-button-large uk-button-primary uk-width-auto"><span uk-icon="icon: file-edit; ratio:1"></span>&ensp; 確定
+          </button>
+        </p>
+      </div>
+
+
+
+    </div>
+
+</html>

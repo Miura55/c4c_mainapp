@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>f-task-detail</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/css/uikit.min.css" />
+<link rel="stylesheet" href="/css/common.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/js/uikit-icons.min.js"></script>
+    <script src="/js/show-menu.js"></script>
+</head>
+
+<body>
+
+    <!-- menu icon -->
+    <script>show_i18n();</script>
+
+    <div class="uk-padding">
+
+        <!-- task name -->
+        <div class="uk-section-xsmall uk-section-primary">
+            <div class="uk-text-center">
+                <div class="uk-text-large">雨漏りしている</div>
+                <div class="uk-text-meta">id:123456</div>
+            </div>
+        </div>
+
+        <!-- status -->
+        <div class="uk-section-xsmall uk-section-default">
+            <div class="uk-flex uk-flex-center">
+                <div class="background-circle status-working"><span uk-icon="icon:play; ratio:2"></span></div>
+            </div>
+            <div class="uk-text-center uk-padding-small">
+                <div class="uk-text-meta">着手中
+                    </div>
+            </div>
+        </div>
+
+
+        <hr class="uk-divider-icon">
+
+        <div class="uk-section-xsmall uk-section-muted">
+                <div class="uk-margin-small uk-text-center">この課題への従事を依頼されています。うけますか？</div>
+                <div class="uk-padding uk-padding-remove-bottom">
+                    <form>
+                        <fieldset class="uk-fieldset">
+
+                                <div class="uk-margin uk-text-center">
+                                        <button onclick="" class="uk-button uk-button-default">従事する</button>
+                                    </div>
+
+                                    <div class="uk-margin uk-text-center">
+                                            <button onclick="" class="uk-button uk-button-default">従事しない</button>
+                                        </div>
+                                        <div class="uk-margin uk-text-center">
+                                                <button onclick="" class="uk-button uk-button-default">その他（押すと入力欄がアコーディオンで表示されるように）</button>
+                                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+
+            <hr class="uk-divider-icon">
+
+
+        <!-- info -->
+        <div class="uk-section-xsmall uk-section-default">
+            <ul class="uk-list uk-list-striped">
+                <li>
+                    <div class="uk-grid-divider  uk-grid-small uk-flex-middle" uk-grid>
+                        <div class="uk-width-auto">
+                            <div class="uk-text-break">
+                                  投稿者
+                            </div>
+                        </div>
+
+                        <div class="uk-width-expand">
+                            <div class="uk-text-break">
+                                <a class="uk-link-muted" href="../f/f-public-info?fid=100&lang={{payload.lang}}">岡崎市ボラセン</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="uk-grid-divider  uk-grid-small uk-flex-middle" uk-grid>
+                        <div class="uk-width-auto">
+                            <div class="uk-text-break">
+                                    コーディネータ
+                            </div>
+                        </div>
+
+                        <div class="uk-width-expand">
+                            <div class="uk-text-break">
+                                <a class="uk-link-muted" href="../c/c-public-info?id=100&lang={{payload.lang}}">北海道　太郎</a><span
+                                    uk-icon="icon:triangle-right"></span>
+                                <a class="uk-link-muted" href="../c/c-public-info?id=100&lang={{payload.lang}}">新潟　花子</a><span
+                                    uk-icon="icon:triangle-right"></span>
+                                <a class="uk-link-muted" href="../c/c-public-info?id=100&lang={{payload.lang}}">岩手　三郎太</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="uk-grid-divider  uk-grid-small uk-flex-middle" uk-grid>
+                        <div class="uk-width-auto">
+                            <div class="uk-text-break">
+                                    投稿日
+                            </div>
+                        </div>
+
+                        <div class="uk-width-expand">
+                            <div class="uk-text-break">
+                                受付日
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="uk-grid-divider  uk-grid-small uk-flex-middle" uk-grid>
+                        <div class="uk-width-auto">
+                            <div class="uk-text-break">
+                                  着手日
+                            </div>
+                        </div>
+
+                        <div class="uk-width-expand">
+                            <div class="uk-text-break">
+                                開始日
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="uk-grid-divider  uk-grid-small uk-flex-middle" uk-grid>
+                        <div class="uk-width-auto">
+                            <div class="uk-text-break">
+                                  完了日
+                            </div>
+                        </div>
+
+                        <div class="uk-width-expand">
+                            <div class="uk-text-break">
+
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="uk-section-xsmall uk-section-muted">
+            <div class="uk-padding-small">
+                <form>
+                    <fieldset class="uk-fieldset">
+                        <div class="uk-margin uk-text-center">
+                            <textarea class="uk-textarea" rows="5" placeholder="{{payload.system_str.write-comment}}"></textarea>
+                            <button class="uk-button uk-button-default uk-margin">書き込む</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+
+            <!-- info card-->
+            <div class="uk-padding-small uk-flex uk-grid-small uk-flex-right" uk-grid>
+                <div class="uk-width-expand">
+                    <div class="uk-card-small uk-card-default uk-card-body uk-padding comment-thisside">
+                        <div class="uk-text-meta">
+                            <div class="uk-text-break">
+                                <span uk-icon="icon: comment; ratio:1"></span>&ensp;
+                                <a class="uk-link-muted" href="../f/f-public-info?fid=100&lang={{payload.lang}}">岡崎ボラセン(現場)</a>&ensp;
+                                12-10-2019 07:03
+                            </div>
+                        </div>
+                        <div class="uk-text-break">
+                            お待ちしています。
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-width-1-6 uk-flex-first"></div>
+            </div>
+
+            <!-- info card-->
+            <div class="uk-padding-small uk-flex uk-flex-left uk-grid-small" uk-grid>
+                <div class="uk-width-expand uk-flex-first">
+                    <div class="uk-card-small uk-card-default uk-card-body uk-padding comment-otherside">
+                        <div class="uk-text-meta">
+                            <div class="uk-text-break">
+                                <span uk-icon="icon: comment; ratio:1"></span>&ensp;
+                                <a class="uk-link-muted" href="../v/v-public-info?vid=100&lang={{payload.lang}}">岐阜 花子(ボランティア)</a>&ensp;
+                                12-10-2019 07:03
+                            </div>
+                        </div>
+                        <div class="uk-text-break">
+                            コーディネータさんから連絡をもらいました。私が社協から運びます。
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-width-1-6"></div>
+            </div>
+
+            <!-- info card-->
+            <div class="uk-padding-small uk-flex uk-flex-left uk-grid-small" uk-grid>
+                <div class="uk-width-expand uk-flex-first">
+                    <div class="uk-card-small uk-card-default uk-card-body uk-padding comment-otherside">
+                        <div class="uk-text-meta">
+                            <div class="uk-text-break">
+                                <span uk-icon="icon: comment; ratio:1"></span>&ensp;
+                                <a class="uk-link-muted" href="../c/c-public-info?cid=100&lang={{payload.lang}}">北海道 三郎(コーディネータ)</a>&ensp;
+                                12-10-2019 07:03
+                            </div>
+                        </div>
+                        <div class="uk-text-break">
+                            市の消防に連絡を入れました。<br>夕方に準備できるとのことで、ボランティアさんに配達を依頼済みです。
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-width-1-6"></div>
+            </div>
+
+        </div>
+
+
+        <!-- Back -->
+        <div class="uk-section-xsmall uk-section-muted uk-text-center">
+            <button onclick="history.back()" class="uk-text-center uk-button uk-button-primary uk-width-auto"><span
+                    uk-icon="icon: arrow-left; ratio:1"></span>&ensp;戻る</button>
+        </div>
+    </div>
+
+</html>

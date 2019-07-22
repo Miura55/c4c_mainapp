@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>c-task-list</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/css/uikit.min.css" />
+<link rel="stylesheet" href="/css/common.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/js/uikit-icons.min.js"></script>
+      <script src="/js/show-menu.js"></script>
+</head>
+
+<body>
+
+    <!-- menu icon -->
+    <script>show_i18n();</script>
+
+
+    <div class="uk-padding">
+
+        <!-- title -->
+        <div class="uk-section-xsmall uk-section-primary">
+            <div class="uk-text-center uk-flex-middle ">
+                <div class="uk-text-large">六ツ美避難所の課題一覧</div>
+            </div>
+        </div>
+
+        <!-- selecter -->
+        <div class="uk-section-xsmall uk-section-default">
+            <div class="uk-padding uk-padding-remove-vertical">
+                <form>
+                    <fieldset class="uk-fieldset">
+                        <div class="uk-margin">
+                            <div class="uk-flex uk-flex-middle uk-flex-right uk-grid-small">
+                                <div>
+
+                                    <select class="uk-select uk-form-small uk-form-width-small">
+                                        <option value="" style="display: none;">Status</option>
+                                        <option>完了</option>
+                                        <option>着手中</option>
+                                        <option selected>未着手</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <button class="uk-button  uk-form-small uk-button-default">絞込む</button>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+
+
+
+
+        <div class="uk-section-xsmall uk-section-muted">
+            <div class="uk-padding uk-padding-remove-vertical uk-grid-small uk-child-width-1-1@s uk-child-width-1-3@m uk-flex-middle uk-text-center uk-grid-match"
+                uk-grid>
+                <!-- info card-->
+                <div>
+                    <div class="uk-card-small uk-card-default uk-card-body status-waiting div-a">
+                        <div class="uk-grid-divider  uk-grid-small uk-flex-middle" uk-grid>
+                            <div class="uk-width-auto">
+                                <div class="uk-text-break">
+                                    <span uk-icon="icon: minus; ratio:1.3"></span>
+                                </div>
+                            </div>
+
+                            <div class="uk-width-expand">
+                                <div class="uk-text-break">
+                                    おむつが全然足りてない。
+                                </div>
+                            </div>
+                        </div>
+                        <!--modal -->
+                        <a href="./c-task-detail?taskid=100"></a>
+                    </div>
+                </div>
+
+                <!-- info card-->
+                <div>
+                    <div class="uk-card-small uk-card-default uk-card-body status-waiting div-a">
+                        <div class="uk-grid-divider  uk-grid-small uk-flex-middle" uk-grid>
+                            <div class="uk-width-auto">
+                                <div class="uk-text-break">
+                                    <span uk-icon="icon:minus; ratio:1.3"></span>
+                                </div>
+                            </div>
+                            <div class="uk-width-expand">
+                                <div class="uk-text-break">
+                                    雨漏りしてる
+                                </div>
+                            </div>
+                        </div>
+                        <!--modal -->
+                        <a href="./c-task-detail?taskid=100"></a>
+                    </div>
+                </div>
+
+                <!-- info card-->
+                <div>
+                    <div class="uk-card-small uk-card-default uk-card-body status-waiting div-a">
+                        <div class="uk-grid-divider  uk-grid-small uk-flex-middle" uk-grid>
+                            <div class="uk-width-auto">
+                                <div class="uk-text-break">
+                                    <span uk-icon="icon: minus; ratio:1.3"></span>
+                                </div>
+                            </div>
+
+                            <div class="uk-width-expand">
+                                <div class="uk-text-break">
+                                    床が乾かない
+                                </div>
+                            </div>
+                        </div>
+                        <!--modal -->
+                        <a href="./c-task-detail?taskid=100"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back -->
+    <div class="uk-section-xsmall uk-section-muted uk-text-center">
+        <button onclick="history.back()" class="uk-text-center uk-button uk-button-primary uk-width-auto"><span
+                uk-icon="icon: arrow-left; ratio:1"></span>&ensp; 戻る</button>
+    </div>
+
+</html>

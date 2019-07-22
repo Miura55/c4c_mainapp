@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>f-dashboard</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/css/uikit.min.css" />
+<link rel="stylesheet" href="/css/common.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/js/uikit-icons.min.js"></script>
+    <script src="/js/show-menu.js"></script>
+</head>
+
+<body>
+
+    <!-- menu icon -->
+    <script>show_i18n();</script>
+
+
+    <div class="uk-padding">
+        <!-- title -->
+        <div class="uk-section-xsmall uk-section-primary">
+            <div class="uk-text-center uk-flex-middle">
+                <div class="uk-text-large">-&ensp;{{payload.name}}&ensp;-</div>
+            </div>
+        </div>
+
+        <div class="uk-margin-small uk-text-center">新着通知</div>
+        <ul class="uk-list uk-list-striped">
+            <li><span uk-icon="icon:info"></span>&ensp; 担当していた課題を岡崎ボラセンさんが取り下げました。</li>
+            <li><span uk-icon="icon:info"></span>&ensp; コメントがあります。</li>
+            <li><span uk-icon="icon:info"></span>&ensp; 他コーディネータから案件が引き継がれました。</li>
+        </ul>
+        <hr class="uk-divider-icon">
+
+        <div class="uk-section-xsmall uk-section-muted">
+            <div class="uk-grid-small uk-child-width-1-1@s uk-child-width-1-2@m uk-flex-middle uk-text-center uk-grid-match uk-padding"
+                uk-grid>
+                <!-- info card-->
+                <div>
+                    <div class="uk-card-small uk-card-default uk-card-body div-a">
+                        <span uk-icon="icon:pencil"></span>&ensp; 課題を入力
+                        <a href="./f-input"></a>
+                    </div>
+                </div>
+                <div>
+                    <div class="uk-card-small uk-card-default uk-card-body div-a">
+                        <span uk-icon="icon:list"></span>&ensp; 入力済み課題を確認
+                        <a href="./f-task-list"></a>
+                    </div>
+                </div>
+                <div>
+                    <div class="uk-card-small uk-card-default uk-card-body div-a">
+                        <span uk-icon="icon:receiver"></span>&ensp;協定先に支援を依頼（事前登録の1~３の協定先に自動でメッセージ飛ばす。協定先から「受諾」の返事があったらこのボタンは「コーディネータに電話」に変える。
+                        <a href="./f-call"></a>
+                    </div>
+                </div>
+                <div>
+                    <div class="uk-card-small uk-card-default uk-card-body div-a">
+                        <span uk-icon="icon:users"></span>&ensp; 派遣ボランティア確認
+                        <a href="./f-volunteers-list"></a>
+                    </div>
+                </div>
+                <div>
+                    <div class="uk-card-small uk-card-default uk-card-body div-a">
+                        <span uk-icon="icon:link"></span>&ensp; 新規ボランティア登録画面
+                        <a href="./f-invite-new-volunteer"></a>
+                    </div>
+                </div>
+                <div>
+                        <div class="uk-card-small uk-card-default uk-card-body div-a">
+                            <span uk-icon="icon:user"></span>&ensp; 登録情報確認
+                            <a href="./f-my-prof"></a>
+                        </div>
+                    </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    </div>
+
+</html>

@@ -1,0 +1,183 @@
+.background-circle {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+}
+
+.skills {
+    margin-right:5px;
+    padding:5px;
+}
+
+.skills-selected {
+    background: #D4DFE6;
+    border-radius: 4px;
+    margin-right:5px;
+    padding:5px;
+}
+
+
+/*--------------------------------------------------------------*/
+/*this source is from https://webcode-lab.com/topics/blogid/9/" */
+.div-a {
+    position: relative;
+    z-index: 1;
+    /* 必要であればリンク要素の重なりのベース順序指定 */
+}
+.div-a a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-indent: -999px;
+    z-index: 2;
+    /* 必要であればリンク要素の重なりのベース順序指定 */
+}
+/*--------------------------------------------------------------*/
+
+.status-completed {
+    border: solid 3px #32d296;
+}
+
+.status-working {
+    border: solid 3px #faa05a;
+}
+
+.status-waiting {
+    border: solid 3px #f0506e;
+}
+
+.status-coming {
+    border: solid 3px #faa05a;
+}
+
+.status-not-working {
+    border: solid 3px #f0506e;
+}
+
+.status-asked {
+    border: solid 3px #9055A2;
+}
+
+
+.comment-thisside {
+    background: #D4DFE6;
+    color: black;
+    border-radius: 10px;
+}
+
+.comment-otherside {
+    background: #e5e5e5;
+    color: black;
+    border-radius: 10px;
+}
+
+.card-with-badge {
+    position: relative;
+    padding-top:33px !important;
+}
+
+.badge-of-card {
+    position: absolute;
+    top: 5px;
+    right: 6px;
+    padding:4px;
+    font-size:13px;
+    background: #D4DFE6;
+    color: black;
+    border-radius: 2px;
+}
+
+.badge-of-card-asked {
+    position: absolute;
+    top: 5px;
+    right: 6px;
+    padding:4px;
+    font-size:13px;
+    background: #D1B6E1;
+    color: black;
+    border-radius: 2px;
+}
+
+.menu-icon-box-outer{
+    padding:10px;
+}
+.menu-icon-box{
+    background: #D4DFE6;
+    border-radius: 4px;
+    padding:10px;
+}
+.background-circle {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+}
+
+.skills {
+    margin-right:5px;
+    padding:5px;
+}
+
+.skills-selected {
+    background: #D4DFE6;
+    border-radius: 4px;
+    margin-right:5px;
+    padding:5px;
+}
+
+/*--------------------------------------------------------------*/
+/*this source is from https://webparts.cman.jp/button/onoff/    */
+ .switchArea {
+    line-height    : 60px;
+    letter-spacing : 0;
+    text-align     : center;
+    font-size      : 20px;
+
+    position       : relative;
+    margin         : auto;
+    width          : 150px;
+    background     : #fff;
+  }
+  .switchArea input[type="checkbox"] {
+    display        : none;
+  }
+  .switchArea label {
+    display        : block;
+    box-sizing     : border-box;
+    height         : 60px;
+    border         : 2px solid #999999;
+    border-radius  : 30px;
+  }
+  .switchArea input[type="checkbox"]:checked +label {
+    border-color   : #32d296;
+  }
+  .switchArea label span:after{
+    content        : "不可";
+    padding        : 0 0 0 36px;
+    color          : #999999;
+  }
+  .switchArea  input[type="checkbox"]:checked + label span:after{
+    content        : "可";
+    padding        : 0 36px 0 0;
+    color          : #32d296;
+  }
+  .switchArea #swImg {
+    position       : absolute;
+    width          : 52px;
+    height         : 52px;
+    background     : #999999;
+    top            : 4px;
+    left           : 4px;
+    border-radius  : 26px;
+    transition     : .2s;
+  }
+    .switchArea input[type="checkbox"]:checked ~ #swImg {
+    transform      : translateX(90px);
+    background     : #32d296;
+  }
+  /*--------------------------------------------------------------*/
