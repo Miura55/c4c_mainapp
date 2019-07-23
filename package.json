@@ -1,0 +1,29 @@
+{
+  "name": "h3_main",
+  "version": "1.0.0",
+  "description": "C4C「H3」のメインアプリ",
+  "main": "app.js",
+  "dependencies": {
+    "cookie-parser": "^1.4.4",
+    "ejs-locals": "^1.0.2",
+    "express-session": "^1.16.2",
+    "express": "^4.17.1",
+    "ejs": "^2.6.2",
+    "morgan": "^1.9.1",
+    "moment": "^2.24.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Miura55/c4c_mainapp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Miura55/c4c_mainapp/issues"
+  },
+  "homepage": "https://github.com/Miura55/c4c_mainapp#readme"
+}
