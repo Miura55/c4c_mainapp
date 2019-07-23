@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var moment = require('moment');
 var crypto = require("crypto");
 var user_db = require('../../cloudantConnect');
 
@@ -35,9 +34,7 @@ router.post("/", function(req, res, next) {
     if (userId){
       req.session.user_id = userId;
       req.session.user_name = result.docs[0].user_name;
-      res.render("c/c-dashboard", {
-        user_name: req.session.user_name
-      });
+      res.redirect("/c/c-dashboard");
     }else{
       res.render('c/c-login', {
         title: 'ログイン',
