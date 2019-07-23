@@ -13,6 +13,7 @@ var crypto = require("crypto");
 //ルーターの定義
 var c_register = require('./routes/cordinator/c-register');
 var c_login = require('./routes/cordinator/c-login');
+var c_dashboard = require('./routes/cordinator/c-dashboard');
 var f_register = require('./routes/fieldworker/f-register');
 var f_login = require('./routes/fieldworker/f-login');
 var v_register = require('./routes/volunteer/v-register');
@@ -36,6 +37,7 @@ app.use(session({
 // ルーティングの設定
 app.use('/c/c-register', c_register);
 app.use('/c/c-login', c_login);
+app.use('/c/c-dashboard', c_dashboard);
 app.use('/f/f-register', f_register);
 app.use('/f/f-login', f_login);
 app.use('/v/v-register', v_register);
@@ -67,9 +69,6 @@ app.get("/c/c-completed-task-list", function (req, res, next) {
   res.render("c/c-completed-task-list", { message: message });
 });
 
-app.get("/c/c-dashboard", function (req, res, next) {
-  res.render("c/c-dashboard", { title: "ダッシュボード" });
-});
 
 app.get("/c/c-edit-prof", function (req, res, next) {
   const message = "This message is from express.";
