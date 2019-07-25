@@ -2,7 +2,12 @@ var express = require('express');
 var router = express.Router();
 var moment = require('moment');
 var crypto = require("crypto");
+var NaturalLanguageClassifierV1 = require('ibm-watson/natural-language-classifier/v1');
 var user_db = require('../../cloudantConnect');
+
+var naturalLanguageClassifier = new NaturalLanguageClassifierV1({
+  iam_apikey: 'tf5dWl9k7AydAk4VPj-2Im0RenqFERlDiJScMvC3Ycs4',
+});
 
 router.get("/", function (req, res, next) {
   res.render("c/c-register", {
@@ -22,6 +27,12 @@ router.post('/', function(req, res, next) {
   cipher.update(password, 'utf8', 'hex');
   var cipheredText = cipher.final('hex');
 
+  classifyParams = {
+    text: req.body.skill,
+    classifier_id: 'e33f45x574-nlc-176',
+  };
+  var skill = "";
+
   // 登録するためのquery
   var body = {
     "type": "cordinatorinfo",
@@ -33,7 +44,10 @@ router.post('/', function(req, res, next) {
     "live": req.body.live,
     "telephone": req.body.telephone,
     "belongs": req.body.belongs,
-    "skill": req.body.skill,
+    "skill": skill,
+    "availabletowork": "unavailable",
+    "status": [],
+    "notification":[],
     "created_at": createdAt,
   };
 

@@ -9,7 +9,32 @@
           <link rel="stylesheet" href="/css/common.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/js/uikit.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/js/uikit-icons.min.js"></script>
-      <script src="/js/show-menu.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/js/show-menu.js"></script>
+    <script type="text/javascript">
+      function changed(value) {
+        if (document.getElementById("switch1").checked == true){
+          console.log("available");
+          var param = {availabletowork:"available"};
+        }else {
+          console.log("unavailable");
+          var param = {availabletowork:"unavailable"};
+        }
+        $.ajax({
+          type: "POST",
+          data: JSON.stringify(param),
+          contentType: "application/json",
+          url: "/c/c-dashboard",
+          success: function(data) {
+            console.log("success add: " + JSON.stringify(data));
+            showTable(data);
+          },
+          error: function(data) {
+            console.log("error add: " + JSON.stringify(data));
+          }
+        });
+      }
+    </script>
 </head>
 
 <body>
@@ -28,7 +53,7 @@
             <div class="uk-text-center uk-flex-middle ">
                 <div class="uk-margin-small"> 今、案件の受付は可能ですか？</div>
                 <div class="switchArea">
-                    <input type="checkbox" id="switch1">
+                    <input type="checkbox" id="switch1" value="available" onchange="changed(this.value)">
                     <label for="switch1"><span></span></label>
                     <div id="swImg"></div>
                 </div>

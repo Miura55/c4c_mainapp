@@ -16,8 +16,11 @@ var c_login = require('./routes/cordinator/c-login');
 var c_dashboard = require('./routes/cordinator/c-dashboard');
 var f_register = require('./routes/fieldworker/f-register');
 var f_login = require('./routes/fieldworker/f-login');
+var f_dashboard = require('./routes/fieldworker/f-dashboard');
+var f_input = require('./routes/fieldworker/f-input');
 var v_register = require('./routes/volunteer/v-register');
 var v_login = require('./routes/volunteer/v-login');
+var v_dashboard = require('./routes/volunteer/v-dashboard');
 
 var app = express();
 app.engine('ejs', engine);
@@ -40,8 +43,11 @@ app.use('/c/c-login', c_login);
 app.use('/c/c-dashboard', c_dashboard);
 app.use('/f/f-register', f_register);
 app.use('/f/f-login', f_login);
+app.use('/f/f-dashboard', f_dashboard);
+app.use('/f/f-input', f_input);
 app.use('/v/v-register', v_register);
 app.use('/v/v-login', v_login);
+app.use('/v/v-dashboard', v_dashboard);
 
 var server = app.listen(3000, function () {
   console.log("Node.js is listening to PORT:" + server.address().port);
@@ -127,20 +133,11 @@ app.get("/c/c-top", function (req, res, next) {
 
 //現場担当者
 
-app.get("/f/f-dashboard", function (req, res, next) {
-  const message = "This message is from express.";
-  res.render("f/f-dashboard", { message: message });
-});
-
 app.get("/f/f-edit-prof", function (req, res, next) {
   const message = "This message is from express.";
   res.render("f/f-edit-prof", { message: message });
 });
 
-app.get("/f/f-input", function (req, res, next) {
-  const message = "This message is from express.";
-  res.render("f/f-input", { message: message });
-});
 
 app.get("/f/f-invite-new-volunteer", function (req, res, next) {
   const message = "This message is from express.";
@@ -191,11 +188,6 @@ app.get("/v/v-auth", function (req, res, next) {
 app.get("/v/v-completed-task-list", function (req, res, next) {
   const message = "This message is from express.";
   res.render("v/v-completed-task-list", { message: message });
-});
-
-app.get("/v/v-dashboard", function (req, res, next) {
-  const message = "This message is from express.";
-  res.render("v/v-dashboard", { message: message });
 });
 
 app.get("/v/v-edit-prof", function (req, res, next) {
