@@ -1,8 +1,8 @@
 # c4c_mainapp
 
-C4C「H3」のメインアプリ
+repository of blooming
 
-## 必要なライブラリ
+## Require package
 - express
 - express-session
 - moment
